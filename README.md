@@ -1,4 +1,4 @@
-# Express.js + JWT + Knex + PostgreSQL Boilerplate 
+# Express.js + JWT + Knex + PostgreSQL Boilerplate (Dockerized Workflow)
 
 A boilerplate with Express.js backend (using JWT authentication), containerized with Docker and PostgreSQL.
 
