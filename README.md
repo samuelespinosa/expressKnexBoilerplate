@@ -33,28 +33,29 @@ A boilerplate with Express.js backend (using JWT authentication), containerized 
     docker compose exec backend npm run migrate:latest
     docker compose exec backend npm run seed:run
   
-##Development Workflow
-###Create new migration:
+## Development Workflow
+### Create new migration:
 
   ```bash
   docker compose exec backend npm run migrate:make migration_name
   ````
-###Run migrations:
+### Run migrations:
 
 ```bash
 docker compose exec backend npm run migrate:latest
 ```
-###Rollback migration:
+### Rollback migration:
 ```bash
 docker compose exec backend npm run migrate:rollback
 ```
-###Run seeds:
+### Run seeds:
 ```bash
 docker compose exec backend npm run seed:run
 ```
-##Development Workflow
+## Development Workflow
 
-##Project Structure
+## Project Structure
+```bash
 ├── src/
 │   ├── controllers/       # Route controllers
 │   ├── db/                # Database configuration
@@ -67,8 +68,8 @@ docker compose exec backend npm run seed:run
 ├── app.js                 # Express app configuration
 ├── server.js              # Server entry point
 └── knexfile.js            # Knex configuration
-
-##Default Users
+```
+## Default Users
 The seed creates these users:
 (You can edit these values in the .env file before runinig the seeds)
 Admin: 
@@ -77,6 +78,6 @@ Admin:
 Basic User: 
   -email: saespinosab@gmail.com
   -password: basic
-##Production Build
+## Production Build
 ```bash
   docker compose -f compose.yml build --target prod
