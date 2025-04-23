@@ -5,7 +5,6 @@ A boilerplate with Express.js backend (using JWT authentication), containerized 
 ## Features
 
 - **Backend**: Express.js with JWT authentication, PostgreSQL with Knex.js, migrations/seeding, role-based access
-- **Frontend**: React.js with Vite
 - **DevOps**: Docker containerization with hot-reload in development
 
 ## Prerequisites
