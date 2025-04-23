@@ -52,9 +52,9 @@ docker compose exec backend npm run migrate:rollback
 ```bash
 docker compose exec backend npm run seed:run
 ```
-## Development Workflow
 
-## Project Structure
+
+### Project Structure
 ```bash
 ├── src/
 │   ├── controllers/       # Route controllers
@@ -69,7 +69,7 @@ docker compose exec backend npm run seed:run
 ├── server.js              # Server entry point
 └── knexfile.js            # Knex configuration
 ```
-## Default Users
+### Default Users
 The seed creates these users:
 (You can edit these values in the .env file before runinig the seeds)
 Admin: 
