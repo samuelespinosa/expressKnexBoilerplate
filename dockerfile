@@ -10,12 +10,7 @@ RUN npm install
 # Copy app files
 COPY . .
 
-# Option 1: Use nodemon (uncomment if preferred)
-# RUN npm install -g nodemon
-# CMD ["nodemon", "--inspect=0.0.0.0", "server.js"]
-
-# Option 2: Use native Docker watch (recommended)
-CMD ["node", "--inspect=0.0.0.0", "server.js"]
+CMD ["npm", "run", "dev"]
 
 # ========== Production Stage ==========
 FROM node:22-alpine AS prod

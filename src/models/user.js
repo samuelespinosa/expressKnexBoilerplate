@@ -1,23 +1,23 @@
-import db from '../db/knexfile.js';
+// src/models/user.js
+import db from '../db/db.js';
 
 export default class User {
   static table = 'users';
 
-  // Create a new user
-  static async create({ email, password }) {
-    const [user] = await db(this.table)
-      .insert({ email, password })
-      .returning('*');
+  static async create({ username, email, password_hash }) {
+    const [user] = await db(User.table).insert({ username, email, password_hash }).returning('*');
     return user;
   }
 
-  // Find user by email
   static async findByEmail(email) {
-    return db(this.table).where({ email }).first();
+    return await db(User.table).where({ email }).first();
   }
 
-  // Find user by ID
+  static async findByUserName(username) {
+    return await db(User.table).where({ username }).first();
+  }
+
   static async findById(id) {
-    return db(this.table).where({ id }).first();
+    return await db(User.table).where({ id }).first();
   }
 }

@@ -1,22 +1,42 @@
 import {User} from '../models/index.js';
 import { hashPassword, comparePassword } from '../utils/auth.js';
-
 export default class UserService {
   // Register a new user
-  static async register(email, password) {
-    const existingUser = await User.findByEmail(email);
-    if (existingUser) throw new Error('User already exists');
+  static async register(username, email, password) {
+    try {
+      const [existingEmail, existingUserName] = await Promise.all([
+        User.findByEmail(email),
+        User.findByUserName(username)
+      ]);
 
-    const hashedPassword = await hashPassword(password);
-    return User.create({ email, password: hashedPassword });
+      if (existingUserName || existingEmail) {
+        throw new Error('User already exists');
+      }
+
+      const password_hash = await hashPassword(password);
+      const newUser = await User.create({ username, email, password_hash });
+      return newUser;
+
+    } catch (error) {
+      console.error('Error in UserService.register:', error.message);
+      throw error; 
+    }
   }
 
   // Login user
   static async login(email, password) {
-    const user = await User.findByEmail(email);
-    if (!user || !(await comparePassword(password, user.password))) {
-      throw new Error('Invalid credentials');
+    try {
+      const user = await User.findByEmail(email);
+
+      if (!user || !(await comparePassword(password, user.password_hash))) {
+        throw new Error('Invalid credentials');
+      }
+
+      return user;
+      
+    } catch (error) {
+      console.error('Error in UserService.login:', error.message);
+      throw error;
     }
-    return user;
   }
 }

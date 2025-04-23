@@ -1,26 +1,22 @@
-/**
- * Seed initial test data
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
+
+import { hashPassword } from "../../utils/auth.js";
+import 'dotenv/config';
 export async function seed(knex) {
-    // Deletes ALL existing entries
-    await knex('posts').del();
     await knex('users').del();
-  
+    
     // Inserts seed entries
     await knex('users').insert([
       {
-        username: 'admin',
-        email: 'admin@example.com',
-        password_hash: '$2a$10$fakehashforseeddata', // bcrypt hash for "password123"
+        username: process.env.ADMIN_USERNAME,
+        email: process.env.ADMIN_EMAIL,
+        password_hash: await hashPassword(process.env.ADMIN_PASSWORD), // bcrypt hash for "password123"
         is_admin: true,
         created_at: new Date().toISOString()
       },
       {
-        username: 'saespibt@gmail.com',
-        email: 'john@example.com',
-        password_hash: '$2a$10$fakehashforseeddata2', // bcrypt hash for "password456"
+        username: process.env.BASIC_USERNAME,
+        email: process.env.BASIC_EMAIL,
+        password_hash: await hashPassword(process.env.BASIC_PASSWORD), // bcrypt hash for "password456"
         created_at: new Date().toISOString()
       }
     ]);

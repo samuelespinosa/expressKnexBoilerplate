@@ -14,8 +14,13 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
       - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - BASIC_USERNAME=${BASIC_USERNAME}
+      - BASIC_EMAIL=${BASIC_EMAIL}
+      - BASIC_PASSWORD=${BASIC_PASSWORD}
     volumes:
-      - ./:/usr/src/backend
       - /usr/src/backend/node_modules
     depends_on:
       db:

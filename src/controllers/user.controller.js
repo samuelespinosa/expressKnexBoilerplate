@@ -1,7 +1,6 @@
 import {User} from '../models/index.js'
 
 export const getUser = async (req, res) => {
-  // req.user is set by auth middleware
   const user = await User.findById(req.user.id).select('-password');
   res.json(user);
 };

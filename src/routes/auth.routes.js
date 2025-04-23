@@ -2,7 +2,7 @@ import express from 'express';
 import { validate } from 'express-validation';
 import { login, register } from '../controllers/auth.controller.js';
 import {registerSchema, loginSchema} from '../validators/index.js';
-import { json } from 'stream/consumers';
+
 
 const router = express.Router();
 

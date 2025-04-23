@@ -15,14 +15,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use('/api', routes);
+  app.use('/api', routes);
 
-//error handling middleware
-app.use((err, req, res, next) => {
-    if (err.name === 'ValidationError') {
-      return res.status(400).json({ message: err.details[0].message });
+  app.use((err, req, res, next) => {
+    
+    if (err?.details && err.details.body) {
+      const messages = err.details.body.map((detail) => ({
+        field: detail.path.join('.'),
+        message: detail.message,
+      }));
+  
+      return res.status(400).json({
+        message:"Validation Error",
+        errors: messages,
+      });
     }
-    res.status(500).json({ message: 'Server error' });
-});
+    console.error('Unhandled error:', err);
+    return res.status(500).json({
+      message: 'Internal Server Error',
+      details: err?.message || 'Unknown error',
+    });
+  });
+  
 
+
+  
 export default app;
