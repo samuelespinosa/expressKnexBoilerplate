@@ -1,4 +1,4 @@
-# Express.js + JWT + PostgreSQL Boilerplate
+# Express.js + JWT + Knex + PostgreSQL Boilerplate 
 
 A boilerplate with Express.js backend (using JWT authentication), containerized with Docker and PostgreSQL.
 
